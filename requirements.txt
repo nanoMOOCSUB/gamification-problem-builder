@@ -1,6 +1,4 @@
 XBlock>=1.2
-unittest
-xblock-problem-builder
 ddt
 mock
 unicodecsv==0.11.0

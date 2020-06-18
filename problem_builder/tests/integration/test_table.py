@@ -20,7 +20,7 @@
 
 # Imports ###########################################################
 
-from unittest.mock import patch
+from mock import patch
 
 from workbench.runtime import WorkbenchRuntime
 

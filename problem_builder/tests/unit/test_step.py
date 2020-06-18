@@ -1,6 +1,6 @@
 import unittest
 
-from unittest.mock import Mock
+from mock import Mock
 from xblock.field_data import DictFieldData
 
 from problem_builder.mixins import QuestionMixin, StepParentMixin
