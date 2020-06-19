@@ -46,12 +46,27 @@
   </div>
   <div class="review-link"><a href="#">{% trans "Review final grade" %}</a></div>
 
-  <div>
-  Last modification
-  
-  
-    {{ grade }}
+    <div>
+      Last modification
+      
+      <div>
+
+        {{% self.student_results %}}
+      </div>
         
+      <div>
+        {{ self.student_results }}
+      </div>
+
+      <div>
+
+        "{{% self.student_results %}}"
+      </div>
+
+      <div>
+      "{{ self.student_results }}""
+      </div>
+      
 
   </div>
 
