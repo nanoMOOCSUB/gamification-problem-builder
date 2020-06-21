@@ -67,10 +67,17 @@
       <div>
         {{ self.runtime }}
       </div>
+      <div>____________________________</div>
         <div>
         {{ self.runtime.user }}
       </div>
-
+       <div>____________________________</div>
+       <div>____________________________</div>
+        <div>
+        {{ self.runtime.get_real_user(self.runtime.anonymous_student_id) }}
+      </div>
+       <div>____________________________</div>
+      
      
   </div>
 
