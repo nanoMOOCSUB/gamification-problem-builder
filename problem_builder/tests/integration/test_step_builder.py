@@ -272,12 +272,12 @@ class StepBuilderTest(MentoringAssessmentBaseTest, MultipleSliderBlocksTestMixin
 
         # Check if info about number of attempts used is correct
         if expected["max_attempts"] == 1:
-            self.assertIn("You have used {num_attempts} of 1 submission.".format(**expected), step_builder.text)
+            self.assertIn("Hey! You have used {num_attempts} of 1 submission.".format(**expected), step_builder.text)
         elif expected["max_attempts"] == 0:
             self.assertNotIn("You have used", step_builder.text)
         else:
             self.assertIn(
-                "You have used {num_attempts} of {max_attempts} submissions.".format(**expected),
+                "Hey! You have used {num_attempts} of {max_attempts} submissions.".format(**expected),
                 step_builder.text
             )
 
