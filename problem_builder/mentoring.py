@@ -444,7 +444,7 @@ class MentoringBlock(
         """Compute the student score taking into account the weight of each step."""
         user_service = self.runtime.service(self, 'user')
         data = user_service.get_current_user()
-        return data
+        return [data.full_name, data.opt_attrs.get('edx-platform.username')]
         
     @XBlock.supports("multi_device")  # Mark as mobile-friendly
     def student_view(self, context):
