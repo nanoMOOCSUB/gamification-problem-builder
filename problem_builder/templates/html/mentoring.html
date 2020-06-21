@@ -39,6 +39,7 @@
       <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled" />
 
       <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}"></div>
+    
     </div>
     {% endif %}
     <div class="messages" tabindex="-1"></div>
@@ -56,8 +57,9 @@
       </div>
       
       <div>
-        {{ self.score().raw }}
+        {{ self.score.1 }}
       </div>
+      
       
       <div>
         {{ self.score.raw }}
