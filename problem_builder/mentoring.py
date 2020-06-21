@@ -224,7 +224,7 @@ class BaseMentoringBlock(
         """ Maximum score. We scale all scores to a maximum of 1.0 so this is always 1.0 """
         return 1.0
 
-
+@XBlock.wants('user')
 class MentoringBlock(
     StudentViewUserStateResultsTransformerMixin, I18NService,
     BaseMentoringBlock, StudioContainerWithNestedXBlocksMixin, StepParentMixin,
