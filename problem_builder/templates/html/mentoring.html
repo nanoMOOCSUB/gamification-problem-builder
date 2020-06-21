@@ -69,17 +69,17 @@
       </div>
       <div>____________________________</div>
         <div>
-        {{ self.runtime.user }}
+        {{ self.runtime.service(self, 'user') }}
       </div>
        <div>____________________________</div>
        <div>____________________________</div>
         <div>
-        {{ self.runtime.get_real_user }}
+        {{ self.runtime.service(self,'user').get_current_user() }}
       </div>
        <div>____________________________</div>
        <div>____________________________</div>
         <div>
-        {{ self.runtime.user.username }}
+         {{ self.runtime.service(self,'user').get_current_user().opt_attrs.get('edx-platform.username') }}
       </div>
        <div>____________________________</div>
      
