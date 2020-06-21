@@ -74,10 +74,14 @@
        <div>____________________________</div>
        <div>____________________________</div>
         <div>
-        {{ self.runtime.get_real_user(self.runtime.anonymous_student_id) }}
+        {{ self.runtime.get_real_user }}
       </div>
        <div>____________________________</div>
-      
+       <div>____________________________</div>
+        <div>
+        {{ self.runtime.user.username }}
+      </div>
+       <div>____________________________</div>
      
   </div>
 
