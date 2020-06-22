@@ -17,7 +17,7 @@
 		    		",
 		    			 max_attempts
 		    		),
-		    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0, cosa:leaderboard0.0},
+		    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0, cosa:leaderboard0},
 		    {interpolate: /\{(.+?)\}/g}
 		) 
 	%>
