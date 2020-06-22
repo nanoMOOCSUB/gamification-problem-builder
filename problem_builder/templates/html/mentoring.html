@@ -61,7 +61,25 @@
       
       <div>
         {{ self.leaderboard }}
-      </div>   
+      </div>  
+
+
+      <div class="content container">
+        {% for leader in self.leaderboard %}
+          <div class="row">
+              <div class="col-md-8">
+              
+                {{leader.0}}
+            
+              </div>
+              <div class="col-md-8">
+              
+                {{leader.0}}
+            
+              </div>
+          </div>
+        {% endfor %}
+      </div>
 
   
   </div>
