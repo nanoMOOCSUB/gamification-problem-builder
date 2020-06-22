@@ -718,7 +718,7 @@ class MentoringBlock(
         # Once it has been completed once, keep completion even if user changes values
         self.completed = bool(completed) or previously_completed
 
-        message = self.(completed)
+        message = self.get_message(completed)
         raw_score = self.score.raw
 
         self.runtime.publish(self, 'xblock.problem_builder.submitted', {
