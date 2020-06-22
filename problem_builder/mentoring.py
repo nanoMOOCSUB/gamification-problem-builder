@@ -691,7 +691,7 @@ class MentoringBlock(
         if len(self.leaderboard) < self.leaderboard_max_length:
             self.leaderboard.append((current_user,current_score))
              
-        else if minimizer[1] < current_score:
+        elif minimizer[1] < current_score:
             self.leaderboard[minimizer[2]] = (current_user,current_score)
 
         ##################################################
