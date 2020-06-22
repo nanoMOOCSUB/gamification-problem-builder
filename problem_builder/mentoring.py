@@ -542,32 +542,10 @@ class MentoringBlock(
     @property
     def additional_publish_event_data(self):
         
-
-        ######  NEW!  ####################################
-        #Update leaderboard
-        #TO DO: Migrate to a function refresh_leaderboard()
-        current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
-        current_score = self.score.percentage
-        minx = 0
-        minimizer = [None,999,0]
-        for leader in self.leaderboard:
-            if leader[1] < minimizer[1]:
-                minimizer = [leader[0],leader[1],minx]
-            minx += 1
-
-        if len(self.leaderboard) < self.leaderboard_max_length:
-            self.leaderboard.append((current_user,current_score))
-             
-        elif minimizer[1] < current_score:
-            self.leaderboard[minimizer[2]] = (current_user,current_score)
-
-        ##################################################
-
         return {
             'user_id': self.scope_ids.user_id,
             'component_id': self.url_name,
-            'username' :current_user,
-            'leaderboard' : len(self.leaderboard),
+            'username' :current_user
         }
 
     @property
@@ -699,6 +677,43 @@ class MentoringBlock(
             if self.max_attempts > 0:
                 self.num_attempts += 1
 
+
+        ######  NEW!  ####################################
+        #Update leaderboard
+        #TO DO: Migrate to a function refresh_leaderboard()
+
+        current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
+        current_score = self.score.percentage
+        minx = 0
+        minimizer = [None,999,0]
+        for leader in self.leaderboard:
+            if leader[1] < minimizer[1]:
+                minimizer = [leader[0],leader[1],minx]
+            minx += 1
+
+        if len(self.leaderboard) < self.leaderboard_max_length:
+            if current_user not in [x[0] for x in self.leaderboard]:
+                self.leaderboard.append((current_user,current_score))
+            else:
+                i = 0
+                for leader in self.leaderboard:
+                    if leader[0] == current_user and leader[1] < current_score:
+                        self.leaderboard[i] = (current_user,current_score)
+                    i += 1
+
+
+        elif minimizer[1] < current_score:
+            if current_user not in [x[0] for x in self.leaderboard]:
+                self.leaderboard[minimizer[2]] = (current_user,current_score)
+            else:
+                i = 0
+                for leader in self.leaderboard:
+                    if leader[0] == current_user and leader[1] < current_score:
+                        self.leaderboard[i] = (current_user,current_score)
+                    i += 1
+
+
+        ##################################################
 
         # Save the completion status.
         # Once it has been completed once, keep completion even if user changes values
