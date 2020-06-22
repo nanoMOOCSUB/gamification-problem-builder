@@ -36,7 +36,7 @@
 
     <div class="submit">
 
-      <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled" />
+      <button onClick="window.location.reload();" class="input-main" value="{% trans "Submit" %}" disabled="disabled" ></button>
 
       <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard.0 }}"></div>
       <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard }}"></div>
