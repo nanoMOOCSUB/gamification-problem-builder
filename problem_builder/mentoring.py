@@ -607,7 +607,7 @@ class MentoringBlock(
             'step': self.step,
             'max_attempts': self.max_attempts,
             'num_attempts': self.num_attempts,
-            'leaderboard0': self.leaderboard[0][0]
+            'leaderboard0': self.leaderboard
         }
 
         if show_message:
@@ -733,7 +733,7 @@ class MentoringBlock(
             'message': message,
             'max_attempts': self.max_attempts,
             'num_attempts': self.num_attempts,
-            'leaderboard0': self.leaderboard[0][0]
+            'leaderboard0': self.leaderboard
         }
 
     def feedback_dispatch(self, target_data, stringify):
