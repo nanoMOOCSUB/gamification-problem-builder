@@ -317,9 +317,27 @@ class MentoringBlock(
         scope=Scope.preferences
     )
 
+    ######  NEW!  ####################################
+
+    leaderboard = List(
+        # Store results of student choices.
+        default=[],
+        scope=Scope.content
+    )
+
+    leaderboard_max_length =  Integer(
+        # Keep track of the student assessment progress.
+        default=1,
+        scope=Scope.content
+    )
+
+    ##################################################
+
+
+
     editable_fields = (
         'display_name', 'followed_by', 'max_attempts', 'enforce_dependency',
-        'display_submit', 'feedback_label', 'weight', 'extended_feedback'
+        'display_submit', 'feedback_label', 'weight', 'extended_feedback', 'leaderboard_max_length'
     )
 
     @property
@@ -439,12 +457,12 @@ class MentoringBlock(
             partially_correct
         )
       
-    @property
-    def xb_user(self):
+   # @property
+    #def xb_user(self):
         """Compute the student score taking into account the weight of each step."""
-        user_service = self.runtime.service(self, 'user')
-        data = user_service.get_current_user()
-        return [data.full_name, data.opt_attrs.get('edx-platform.username')]
+     #   user_service = self.runtime.service(self, 'user')
+      #  data = user_service.get_current_user()
+       # return [data.full_name, data.opt_attrs.get('edx-platform.username')]
         
     @XBlock.supports("multi_device")  # Mark as mobile-friendly
     def student_view(self, context):
@@ -523,9 +541,11 @@ class MentoringBlock(
 
     @property
     def additional_publish_event_data(self):
+        
         return {
             'user_id': self.scope_ids.user_id,
             'component_id': self.url_name,
+            'username' : self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username'),
         }
 
     @property
@@ -656,6 +676,26 @@ class MentoringBlock(
             # Mark this as having used an attempt:
             if self.max_attempts > 0:
                 self.num_attempts += 1
+
+        ######  NEW!  ####################################
+        #Update leaderboard
+        #TO DO: Migrate to a function refresh_leaderboard()
+        current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
+        current_score = self.score.percentage
+        minimizer = (None,999,0)
+        for leader in self.leaderboard:
+            if leader[1] < minimizer[1]:
+                minimizer = (leader[0],leader[1],minimizer[2])
+            minimizer[2] += 1
+
+        if len(self.leaderboard) < self.leaderboard_max_length:
+            self.leaderboard.append((current_user,current_score))
+             
+        else if minimizer[1] < current_score:
+            self.leaderboard[minimizer[2]] = (current_user,current_score)
+
+        ##################################################
+
 
         # Save the completion status.
         # Once it has been completed once, keep completion even if user changes values
