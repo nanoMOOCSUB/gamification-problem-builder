@@ -7,17 +7,17 @@
 				    		Feedback
 				    	</div> 
 				    	
-				    	Hey! You have used {num_used} of 1 submission, and leader is {leaderboard0.0}.
+				    	Hey! You have used {num_used} of 1 submission, and leader is {leaderboard0}.
 		    		", 
 		    		"
 		    			<div>
-		    				Feedback
+		    				Feedback with {cosa}
 		    			</div> 
-		    			Hey! You have used {num_used} of {max_attempts} submissions, and leader is {leaderboard0.0}.
+		    			Hey! You have used {num_used} of {max_attempts} submissions, and leader is {leaderboard0}.
 		    		",
 		    			 max_attempts
 		    		),
-		    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0},
+		    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0, cosa:leaderboard0.0},
 		    {interpolate: /\{(.+?)\}/g}
 		) 
 	%>
