@@ -328,7 +328,7 @@ class MentoringBlock(
     leaderboard_max_length =  Integer(
         # Keep track of the student assessment progress.
         default=1,
-        scope=Scope.user_state_summary
+        scope=Scope.content
     )
 
     ##################################################
