@@ -2,7 +2,7 @@
   <% if (_.isNumber(max_attempts) && max_attempts > 0) {{ %>
   <span>
   	<%= _.template(
-	    ngettext("Hey! You have used {num_used} of 1 submission, and leader is {leaderboard0}.", "Hey! You have used {num_used} of {max_attempts} submissions, and leader is {leaderboard0}.", max_attempts),
+	    ngettext("<div>Formatting HTML</div> Hey! You have used {num_used} of 1 submission, and leader is {leaderboard0}.", "Hey! You have used {num_used} of {max_attempts} submissions, and leader is {leaderboard0}.", max_attempts),
 	    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0}, {interpolate: /\{(.+?)\}/g}
 	  ) 
 	  %>
