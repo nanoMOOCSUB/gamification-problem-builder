@@ -76,11 +76,16 @@
       <input type="button" value="Refresh" onclick="reload_leaderboard();">
     </div>
     <script>
-      function reload_leaderboard() {
-         window.location.reload();
+      function reload_leaderboard(){
+          var container = document.getElementById("leaderboard_table");
+          var content = container.innerHTML;
+          container.innerHTML= content; 
+          
+         //this line is to watch the result in console , you can remove it later  
+          console.log("Refreshed"); 
       }
     </script>
-   <table style="width: 100%;">
+   <table id="leaderboard_table" style="width: 100%;">
     <caption>Top {{ self.leaderboard_max_length }} scores for this problem</caption>
     <thead>
         <tr>
