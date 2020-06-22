@@ -322,13 +322,13 @@ class MentoringBlock(
     leaderboard = List(
         # Store results of student choices.
         default=[],
-        scope=Scope.content
+        scope=Scope.user_state_summary
     )
 
     leaderboard_max_length =  Integer(
         # Keep track of the student assessment progress.
         default=1,
-        scope=Scope.content
+        scope=Scope.user_state_summary
     )
 
     ##################################################
@@ -548,11 +548,12 @@ class MentoringBlock(
         #TO DO: Migrate to a function refresh_leaderboard()
         current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
         current_score = self.score.percentage
+        minx = 0
         minimizer = [None,999,0]
         for leader in self.leaderboard:
             if leader[1] < minimizer[1]:
-                minimizer = [leader[0],leader[1],minimizer[2]]
-            minimizer[2] += 1
+                minimizer = [leader[0],leader[1],minx]
+            minx += 1
 
         if len(self.leaderboard) < self.leaderboard_max_length:
             self.leaderboard.append((current_user,current_score))
