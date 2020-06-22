@@ -77,33 +77,32 @@
     </div>
     <script>
       function reload_leaderboard(){
-          var container = document.getElementById("leaderboard_table");
-          var content = container.innerHTML;
-          container.innerHTML= content; 
-          
-         //this line is to watch the result in console , you can remove it later  
-          console.log("Refreshed"); 
+          document.getElementById("leaderboard_table").contentWindow.location.reload(true);
       }
     </script>
-   <table id="leaderboard_table" style="width: 100%;">
-    <caption>Top {{ self.leaderboard_max_length }} scores for this problem</caption>
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">User</th>
-            <th scope="col">Score</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for leader in self.leaderboard %}
-          <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ leader.0 }}</td>
-            <td>{{ leader.1 }}</td>
-          </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <div id="leaderboard_table">
+      <table style="width: 100%;">
+          <caption>Top {{ self.leaderboard_max_length }} scores for this problem</caption>
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">User</th>
+                  <th scope="col">Score</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for leader in self.leaderboard %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ leader.0 }}</td>
+                  <td>{{ leader.1 }}</td>
+                </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+
+    </div>
+   
 <style>
 /*adding table style through css*/
     thead,
