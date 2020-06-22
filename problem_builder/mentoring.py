@@ -548,10 +548,10 @@ class MentoringBlock(
         #TO DO: Migrate to a function refresh_leaderboard()
         current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
         current_score = self.score.percentage
-        minimizer = (None,999,0)
+        minimizer = [None,999,0]
         for leader in self.leaderboard:
             if leader[1] < minimizer[1]:
-                minimizer = (leader[0],leader[1],minimizer[2])
+                minimizer = [leader[0],leader[1],minimizer[2]]
             minimizer[2] += 1
 
         if len(self.leaderboard) < self.leaderboard_max_length:
