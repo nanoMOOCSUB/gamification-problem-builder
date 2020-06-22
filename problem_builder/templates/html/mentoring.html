@@ -48,10 +48,17 @@
   <div class="review-link"><a href="#">{% trans "Review final grade" %}</a></div>
 
     <div>
-      Last modification
+      Current score
+      <div>
+        {{ self.score.1 }}
+      </div>
+    </div>
+
+    <div>
+      Leaderboard
  
         
-      <div>
+      <!-- <div>
         {{ self.additional_publish_event_data.username }}
       </div>
       
@@ -61,11 +68,11 @@
       
       <div>
         {{ self.leaderboard }}
-      </div>  
+      </div>   -->
 
 
 
-   <table class="css-serial">
+   <table style="width: 100%;">
     <caption>Top {{ self.leaderboard_max_length }} scores for this problem</caption>
     <thead>
         <tr>
@@ -77,7 +84,7 @@
     <tbody>
         {% for leader in self.leaderboard %}
           <tr>
-            <th scope="row"></th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{ leader.0 }}</td>
             <td>{{ leader.1 }}</td>
           </tr>
@@ -85,16 +92,7 @@
     </tbody>
 </table>
 <style>
-/*adding row numbers through css*/
-    .css-serial {
-        counter-reset: serial-number; /* Set the serial number counter to 0 */
-    }
-
-    .css-serial td:first-child:before {
-        counter-increment: serial-number; /* Increment the serial number counter */
-        content: counter(serial-number); /* Display the counter */
-    }
-
+/*adding table style through css*/
     thead,
     tfoot {
         background-color: #3f87a6;
@@ -122,11 +120,9 @@
     th {
         border: 1px solid rgb(190, 190, 190);
         padding: 5px 10px;
-    }
-
-    td {
         text-align: center;
     }
+
 </style>
 
   

@@ -607,6 +607,7 @@ class MentoringBlock(
             'step': self.step,
             'max_attempts': self.max_attempts,
             'num_attempts': self.num_attempts,
+            'leaderboard0': self.leaderboard[0][0]
         }
 
         if show_message:
@@ -700,8 +701,6 @@ class MentoringBlock(
                     if leader[0] == current_user and leader[1] < current_score:
                         self.leaderboard[i] = (current_user,current_score)
                     i += 1
-
-
         elif minimizer[1] < current_score:
             if current_user not in [x[0] for x in self.leaderboard]:
                 self.leaderboard[minimizer[2]] = (current_user,current_score)
@@ -719,7 +718,7 @@ class MentoringBlock(
         # Once it has been completed once, keep completion even if user changes values
         self.completed = bool(completed) or previously_completed
 
-        message = self.get_message(completed)
+        message = self.(completed)
         raw_score = self.score.raw
 
         self.runtime.publish(self, 'xblock.problem_builder.submitted', {
@@ -734,6 +733,7 @@ class MentoringBlock(
             'message': message,
             'max_attempts': self.max_attempts,
             'num_attempts': self.num_attempts,
+            'leaderboard0': self.leaderboard[0][0]
         }
 
     def feedback_dispatch(self, target_data, stringify):
