@@ -545,7 +545,7 @@ class MentoringBlock(
         return {
             'user_id': self.scope_ids.user_id,
             'component_id': self.url_name,
-            'username' :current_user
+            'username' :self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
         }
 
     @property
