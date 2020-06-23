@@ -35,9 +35,11 @@
     </div>
 
     <div class="submit">
+      <div>
+         <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled" onclick="reload_leaderboard();"/>
+      </div>
 
-      <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled" onclick="reload_leaderboard();"/>
-
+     
       <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard.0 }}"></div>
 
     </div>
@@ -71,7 +73,7 @@
     </div> -->
     <script>
       function reload_leaderboard(){
-          window.location.reload();
+          window.location.reload(true);
       }
     </script>
     <div id="leaderboard_table">
@@ -92,24 +94,15 @@
                   <td>{{ leader.1 }}</td>
                 </tr>
               {% endfor %}
-          </tbody>
-      </table>
 
-    </div>
-
-    <div>
-      <table style="width: 100%;">
-          <caption>Your score</caption>
-          <thead class="main_head">
-              <tr>
+                <tr class="main_head">
                   <td scope="col">???</td>
                   <td scope="col">{{ self.additional_publish_event_data.username }}</td>
                   <td scope="col">{{ self.score.1 }}</td>
               </tr>
-          </thead>
-          <tbody>
           </tbody>
       </table>
+
     </div>
    
       <style>
