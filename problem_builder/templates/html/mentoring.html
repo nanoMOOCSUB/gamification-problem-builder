@@ -36,7 +36,7 @@
 
     <div class="submit">
 
-      <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled"/>
+      <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled" onclick="reload_leaderboard();"/>
 
       <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard.0 }}"></div>
 
@@ -48,12 +48,6 @@
   </div>
   <div class="review-link"><a href="#">{% trans "Review final grade" %}</a></div>
 
-    <div>
-      Current score
-      <div>
-        {{ self.score.1 }}
-      </div>
-    </div>
 
     <div>
       Leaderboard
@@ -72,12 +66,12 @@
       </div>   -->
 
 
-    <div>
+   <!--  <div>
       <input type="button" value="Refresh" onclick="reload_leaderboard();">
-    </div>
+    </div> -->
     <script>
       function reload_leaderboard(){
-          document.getElementById("leaderboard_table").contentWindow.location.reload(true);
+          window.location.reload();
       }
     </script>
     <div id="leaderboard_table">
@@ -102,40 +96,59 @@
       </table>
 
     </div>
+
+    <div>
+      <table style="width: 100%;">
+          <caption>Your score</caption>
+          <thead class="main_head">
+              <tr>
+                  <td scope="col">???</td>
+                  <td scope="col">{{ self.additional_publish_event_data.username }}</td>
+                  <td scope="col">{{ self.score.1 }}</td>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+      </table>
+    </div>
    
-<style>
-/*adding table style through css*/
-    thead,
-    tfoot {
-        background-color: #3f87a6;
-        color: #fff;
-    }
+      <style>
+      /*adding table style through css*/
+          thead,
+          tfoot {
+              background-color: #3f87a6;
+              color: #fff;
+          }
 
-    tbody {
-        background-color: #e4f0f5;
-    }
+          .main_head {
+              background-color: #FFA500;
+              color: #fff;
+          }
+          tbody {
+              background-color: #e4f0f5;
+          }
 
-    caption {
-        padding: 10px;
-        caption-side: bottom;
-    }
+          caption {
+              padding: 10px;
+              caption-side: bottom;
+          }
 
-    table {
-        border-collapse: collapse;
-        border: 2px solid rgb(200, 200, 200);
-        letter-spacing: 1px;
-        font-family: sans-serif;
-        font-size: .8rem;
-    }
+          table {
+              border-collapse: collapse;
+              border: 2px solid rgb(200, 200, 200);
+              letter-spacing: 1px;
+              font-family: sans-serif;
+              font-size: .8rem;
+          }
 
-    td,
-    th {
-        border: 1px solid rgb(190, 190, 190);
-        padding: 5px 10px;
-        text-align: center;
-    }
+          td,
+          th {
+              border: 1px solid rgb(190, 190, 190);
+              padding: 5px 10px;
+              text-align: center;
+          }
 
-</style>
+      </style>
 
   
   </div>
