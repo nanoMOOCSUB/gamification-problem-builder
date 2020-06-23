@@ -1,17 +1,10 @@
 <script type="text/template" id="xblock-attempts-template">
   <% if (_.isNumber(max_attempts) && max_attempts > 0) {{ %>
   <span>
-  	<%= 
-  		var i;
-  		for(i = 0; i < leaderboard0.length;i++){
-
-  			<div>
-		  		_.template(
-				    ngettext("<div>Formatting HTML</div> Hey! You have used {num_used} of 1 submission, and leader is {leaderboard0}.", "<div>Formatting HTML</div> Hey! You have used {num_used} of {max_attempts} submissions, and leader is {leaderboard0[0]} with score {leaderboard0[1]}.", max_attempts),
-				    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0[i]}, {interpolate: /\{(.+?)\}/g}
-			  	) 
-		  	</div>
-  		};
+  	<%= _.template(
+	    ngettext("<div>Formatting HTML</div> Hey! You have used {num_used} of 1 submission, and leader is {leaderboard0}.", "<div>Formatting HTML</div> Hey! You have used {num_used} of {max_attempts} submissions, and leader is <% var i; for(i=0;i<{leaderboard0.length};i++)){%> <div> {leaderboard0[i]} </div>}%> .", max_attempts),
+	    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0}, {interpolate: /\{(.+?)\}/g}
+	  ) 
 	  %>
   </span>
   <% }} %>
