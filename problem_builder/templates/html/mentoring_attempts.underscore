@@ -1,14 +1,14 @@
 <script type="text/template" id="xblock-attempts-template">
   <% if (_.isNumber(max_attempts) && max_attempts > 0) {{ %>
   <span>
-  	<%= _.template(
+  	 _.template(
 		"Users: <%_.forEach(leaderboard0, function (u,i) {%>"
         + "<%if (i>0) { print(', ') }%>"
         + "<%=u%>"
         + "<%})%>",
 	    {num_used: _.min([num_attempts, max_attempts]), max_attempts: max_attempts,leaderboard0: leaderboard0}, {interpolate: /\{(.+?)\}/g}
 	  ) 
-	  %>
+	  
   </span>
   <% }} %>
 </script>
