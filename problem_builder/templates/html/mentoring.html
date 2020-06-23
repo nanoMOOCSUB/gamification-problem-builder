@@ -36,11 +36,11 @@
 
     <div class="submit">
       <div>
-         <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled" onclick="reload_leaderboard();"/>
+         <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled"/>
       </div>
 
      
-      <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard.0 }}"></div>
+      <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard }}"></div>
 
     </div>
 
@@ -71,11 +71,7 @@
    <!--  <div>
       <input type="button" value="Refresh" onclick="reload_leaderboard();">
     </div> -->
-    <script>
-      function reload_leaderboard(){
-          window.location.reload(true);
-      }
-    </script>
+  
     <div id="leaderboard_table">
       <table style="width: 100%;">
           <caption>Top {{ self.leaderboard_max_length }} scores for this problem</caption>
