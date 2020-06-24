@@ -1,6 +1,6 @@
 <script type="text/template" id="xblock-attempts-template">
   <% if (_.isNumber(max_attempts) && max_attempts > 0) {{ %>
-  <span>
+  <span style="width: 100%;">
   	<table style="width: 100%;">
           <caption>Top scores for this problem</caption>
           <thead>
@@ -12,15 +12,34 @@
           </thead>
           <tbody>
 
+          		<% var is_leader = false%>
           		<%_.forEach(leaderboard0, function (u,i) {%>
 
-          		 <tr>
-                  <th scope="row"><%= i %></th>
-                  <td><%= u[0] %></td>
-                  <td><%= u[1] %></td>
-                </tr>
+	          		<% if (username === u[0]) {{%>
+	          			<% is_leader = true %>
+	          			<tr class="main_head">
+		                  <th scope="row"><%= i %></th>
+		                  <td><%= u[0] %></td>
+		                  <td><%= u[1] %></td>
+		                </tr>
+	          		 
+			        <%}} else {{ %>
 
+			        	<tr>
+		                  <th scope="row"><%= i %></th>
+		                  <td><%= u[0] %></td>
+		                  <td><%= u[1] %></td>
+		                </tr>
+
+			        <%}}%>
 		        <%})%>
+		        <% if (!is_leader) {{ %>
+		        	<tr class="main_head">
+	                  <th scope="row"><%= ??? %></th>
+	                  <td><%= username %></td>
+	                  <td><%= score %></td>
+	                </tr>
+		        <%}}%>
           </tbody>
       </table>
       <style>
