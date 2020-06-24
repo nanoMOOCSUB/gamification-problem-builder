@@ -20,9 +20,11 @@ function MentoringWithStepsBlock(runtime, element) {
 
     var activeStepIndex = $('.mentoring', element).data('active-step');
     var attemptsTemplate = _.template($('#xblock-attempts-template').html());
+    var scoreTemplate = _.template($('#xblock-score-template').html());
+    
     var message = $('.sb-step-message', element);
     var checkmark, submitDOM, nextDOM, reviewButtonDOM, tryAgainDOM,
-        gradeDOM, attemptsDOM, reviewLinkDOM, submitXHR;
+        gradeDOM, attemptsDOM, scoreDOM, reviewLinkDOM, submitXHR;
     var reviewStepDOM = $("div.xblock[data-block-type=sb-review-step], div.xblock-v1[data-block-type=sb-review-step]", element);
     var reviewStepAnchor = $("<span>").addClass("review-anchor").insertBefore(reviewStepDOM);
     var hasAReviewStep = reviewStepDOM.length == 1;
@@ -115,6 +117,7 @@ function MentoringWithStepsBlock(runtime, element) {
                     tryAgainDOM.show();
                 } else {
                     showAttempts();
+                    showScore();
                 }
             }
         }
@@ -134,6 +137,9 @@ function MentoringWithStepsBlock(runtime, element) {
                 // We are now showing the review step / end
                 // Update the number of attempts.
                 attemptsDOM.data('num_attempts', response.num_attempts);
+                //update the score
+                scoreDOM.data('curr_score', response.curr_score);
+                
                 reviewStepDOM.html($(response.review_html).html());
                 updateControls();
             } else if (!hasQuestion) {
@@ -181,6 +187,7 @@ function MentoringWithStepsBlock(runtime, element) {
         hideAllSteps();
         hideReviewStep();
         attemptsDOM.html('');
+        scoreDOM.html('');
         message.hide();
     }
 
@@ -201,6 +208,7 @@ function MentoringWithStepsBlock(runtime, element) {
 
             showReviewStep();
             showAttempts();
+            showScore();
         } else {
             showActiveStep();
             validateXBlock();
@@ -329,6 +337,13 @@ function MentoringWithStepsBlock(runtime, element) {
         } // Don't show attempts if unlimited attempts available (max_attempts === 0)
     }
 
+    function showScore() {
+        var data = scoreDOM.data();
+        
+        scoreDOM.html(scoreTemplate(data));
+         // Don't show attempts if unlimited attempts available (max_attempts === 0)
+    }
+
     function onChange() {
         // We do not allow users to modify answers belonging to a step after submitting them:
         // Once an answer has been submitted ("Next Step" button is enabled),
@@ -377,8 +392,9 @@ function MentoringWithStepsBlock(runtime, element) {
 
     function buildInteractionData() {
         var attemptsData = attemptsDOM.data();
-
+        var scoreData = scoreDOM.data();
         return {
+            "curr_score": scoreData.curr_score,
             "attempts_count": attemptsData.num_attempts,
             "attempts_max": attemptsData.max_attempts || "unlimited",
             "score": reviewStepDOM.find(".grade-result").data('score')
@@ -408,6 +424,7 @@ function MentoringWithStepsBlock(runtime, element) {
         stopVideos();
         showReviewStep();
         showAttempts();
+        showScore();
 
         // Disable "Try again" button if no attempts left
         if (!someAttemptsLeft()) {
@@ -522,6 +539,7 @@ function MentoringWithStepsBlock(runtime, element) {
 
         gradeDOM = $('.grade', element);
         attemptsDOM = $('.attempts', element);
+        scoreDOM = $('.score', element);
 
         reviewLinkDOM = $(element).find('.review-link');
         reviewLinkDOM.off('click');
@@ -545,7 +563,7 @@ function MentoringWithStepsBlock(runtime, element) {
         $.post(handlerUrl, JSON.stringify({}))
             .success(function(response) {
                 attemptsDOM.data('num_attempts', response.num_attempts);
-
+                scoreDOM.data('curr_score', response.curr_score);
                 // Finally, show controls and content
                 submitDOM.show();
                 nextDOM.show();

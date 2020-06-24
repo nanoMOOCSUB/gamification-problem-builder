@@ -27,8 +27,11 @@ function MentoringStandardView(runtime, element, mentoring) {
         $('.attempts', element).data('num_attempts', response.num_attempts);
         $('.attempts', element).data('leaderboard0', response.leaderboard0);
         $('.attempts', element).data('username', response.username);
-        $('.attempts', element).data('curr_score', response.curr_score);
+        $('.attempts', element).data('curr_score', response.curr_score);  
+        $('.score', element).data('curr_score', response.curr_score);
+        $('.score', element).data('username', response.username);
         mentoring.renderAttempts();
+        mentoring.renderScore();
 
         if (!hide_results) {
             mentoring.setContent(messagesDOM, response.message);
@@ -129,6 +132,7 @@ function MentoringStandardView(runtime, element, mentoring) {
         var submitPossible = submitDOM.length > 0;
         if (submitPossible) {
             mentoring.renderAttempts();
+            mentoring.renderScore();
             validateXBlock();
         } // else display_submit is false and this is read-only
     }

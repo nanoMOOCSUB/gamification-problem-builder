@@ -39,13 +39,17 @@
          <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled"/>
       </div>
 
-        {% if self.gamification_active.0 %}
-        Here we show your points. Working for doing through AJAX...
+      <div class="score" data-username="{{ self.additional_publish_event_data.username }}" data-curr_score="{{ self.score.1 }}" style="width: 100%;  margin-top: 30px;"></div>
+
+        <!-- {% if self.gamification_active.0 and not self.gamification_active.1 %}
+        <div>
+          Here we show your points. Working for doing through AJAX...
+        </div>
         {% endif %}
 
         {% if self.gamification_active.1 %}
           <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard }}" data-username="{{ self.additional_publish_event_data.username }}" data-curr_score="{{ self.score.1 }}" style="width: 100%;  margin-top: 30px;"></div>
-        {% endif %}
+        {% endif %} -->
 
 
 

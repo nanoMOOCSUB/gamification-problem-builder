@@ -6,6 +6,8 @@ function MentoringBlock(runtime, element) {
     }
 
     var attemptsTemplate = _.template($('#xblock-attempts-template').html());
+    var scoreTemplate = _.template($('#xblock-score-template').html());
+    
     var data = $('.mentoring', element).data();
     var children = runtime.children(element);
     var step = data.step;
@@ -14,6 +16,7 @@ function MentoringBlock(runtime, element) {
         callIfExists: callIfExists,
         setContent: setContent,
         renderAttempts: renderAttempts,
+        renderScore: renderScore,
         renderDependency: renderDependency,
         children: children,
         initChildren: initChildren,
@@ -70,6 +73,12 @@ function MentoringBlock(runtime, element) {
     function renderAttempts() {
         var data = $('.attempts', element).data();
         $('.attempts', element).html(attemptsTemplate(data));
+    }
+
+    //NEW!
+    function renderScore() {
+        var data = $('.score', element).data();
+        $('.score', element).html(scoreTemplate(data));
     }
 
     function renderDependency() {
