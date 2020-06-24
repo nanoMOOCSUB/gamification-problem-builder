@@ -600,14 +600,17 @@ class MentoringBlock(
         """
         results, completed, show_message = self._get_standard_results()
         mentoring_completed = completed
-
+        current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
+        current_score = self.score.percentage
         result = {
             'results': results,
             'completed': completed,
             'step': self.step,
             'max_attempts': self.max_attempts,
             'num_attempts': self.num_attempts,
-            'leaderboard0': self.leaderboard
+            'leaderboard0': self.leaderboard,
+            'username': current_user,
+            'curr_score': current_score
         }
 
         if show_message:
@@ -733,7 +736,9 @@ class MentoringBlock(
             'message': message,
             'max_attempts': self.max_attempts,
             'num_attempts': self.num_attempts,
-            'leaderboard0': self.leaderboard
+            'leaderboard0': self.leaderboard,
+            'username': current_user,
+            'curr_score': current_score
         }
 
     def feedback_dispatch(self, target_data, stringify):

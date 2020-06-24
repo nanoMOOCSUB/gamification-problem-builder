@@ -26,6 +26,8 @@ function MentoringStandardView(runtime, element, mentoring) {
         $('.attempts', element).data('max_attempts', response.max_attempts);
         $('.attempts', element).data('num_attempts', response.num_attempts);
         $('.attempts', element).data('leaderboard0', response.leaderboard0);
+        $('.attempts', element).data('username', response.username);
+        $('.attempts', element).data('curr_score', response.curr_score);
         mentoring.renderAttempts();
 
         if (!hide_results) {
