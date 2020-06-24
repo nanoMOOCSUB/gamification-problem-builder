@@ -454,7 +454,7 @@ class MentoringBlock(
     ######  NEW!  ####################################
 
 
-     @property
+    @property
     def gamification_active(self):
         """Compute which gamification mechanics is required for a current user."""
         # Returns list(bool): Each index correspons to a gamification component.
