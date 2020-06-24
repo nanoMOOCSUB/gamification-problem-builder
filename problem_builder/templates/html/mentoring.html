@@ -40,7 +40,7 @@
       </div>
 
      
-      <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard }}" data-username="{{ self.additional_publish_event_data.username }}" data-curr_score="{{ self.score.1 }}" style="width: 100%;"></div>
+      <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard }}" data-username="{{ self.additional_publish_event_data.username }}" data-curr_score="{{ self.score.1 }}" style="width: 100%;  margin-top: 30px;"></div>
     
 
 
@@ -53,11 +53,11 @@
   <div class="review-link"><a href="#">{% trans "Review final grade" %}</a></div>
 
 
-    <div>
+    <!--<div>
       Leaderboard
  
         
-      <!-- <div>
+       <div>
         {{ self.additional_publish_event_data.username }}
       </div>
       
@@ -74,7 +74,7 @@
       <input type="button" value="Refresh" onclick="reload_leaderboard();">
     </div> -->
   
-    <div id="leaderboard_table">
+    <!-- <div id="leaderboard_table">
       <table style="width: 100%;">
           <caption>Top {{ self.leaderboard_max_length }} scores for this problem</caption>
           <thead>
@@ -101,7 +101,7 @@
           </tbody>
       </table>
 
-    </div>
+    </div> 
    
       <style>
       /*adding table style through css*/
@@ -112,7 +112,7 @@
           }
 
           .main_head {
-              background-color: #FFA500;
+              background-color: #ffe3a1;
               color: #fff;
           }
           tbody {
@@ -142,7 +142,7 @@
       </style>
 
   
-  </div>
+  </div>-->
 
   <p class="copyright">
   
