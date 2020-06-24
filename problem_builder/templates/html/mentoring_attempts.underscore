@@ -1,6 +1,6 @@
 <script type="text/template" id="xblock-attempts-template">
   <% if (_.isNumber(max_attempts) && max_attempts > 0) {{ %>
-  <span style="width: 100%;">
+  <span>
   	<table style="width: 100%;">
           <caption>Top scores for this problem</caption>
           <thead>
@@ -35,7 +35,7 @@
 		        <%})%>
 		        <% if (!is_leader) {{ %>
 		        	<tr class="main_head">
-	                  <th scope="row"><%= ??? %></th>
+	                  <th scope="row">???</th>
 	                  <td><%= username %></td>
 	                  <td><%= curr_score %></td>
 	                </tr>

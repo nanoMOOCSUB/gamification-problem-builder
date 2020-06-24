@@ -714,7 +714,6 @@ class MentoringBlock(
                         self.leaderboard[i] = (current_user,current_score)
                     i += 1
 
-
         ##################################################
 
         # Save the completion status.
