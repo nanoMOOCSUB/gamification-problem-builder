@@ -1,13 +1,13 @@
 <script type="text/template" id="xblock-score-template">
   
   <span>
-  	<table style="width: 100%;">
+  	<table style="width: 50%;">
           <caption>Your scores for this problem</caption>
           <thead>
               <tr>
-                    <th scope="row">Score</th>
-                    <td><%= username %></td>
-                    <td><%= curr_score %></td>
+                    <th scope="row">Current Score</th>
+                    <th class="main_value"><%= curr_score %></th>
+                    
                   </tr>
           </thead>
           <tbody>
@@ -23,8 +23,8 @@
               color: #fff;
           }
 
-          .main_head {
-              background-color: #ffe3a1;
+          .main_value {
+              background-color: #e4f0f5;
               color: #fff;
           }
           tbody {
