@@ -108,7 +108,7 @@ class BaseMentoringBlock(
     max_attempts = Integer(
         display_name=_("Max. attempts allowed"),
         help=_("Maximum number of times students are allowed to attempt the questions belonging to this block"),
-        default=0,
+        default=1,
         scope=Scope.content,
         enforce_type=True
     )
@@ -319,14 +319,32 @@ class MentoringBlock(
 
     ######  NEW!  ####################################
 
+    gamification = Boolean(
+        #Usage of gamified mechanics
+        display_name=_("Gamification"),
+        help=_("Use gamification mechanics?"),
+        default=True,
+        scope=Scope.content
+    )
+
+    adaptative_gamification = Boolean(
+        #Usage of gamified mechanics
+        display_name=_("Adaptative Gamification"),
+        help=_("Use adaptative gamification mechanics?"),
+        default=True,
+        scope=Scope.content
+    )
+
     leaderboard = List(
-        # Store results of student choices.
+        # Store results of student in a leaderboard.
         default=[],
         scope=Scope.user_state_summary
     )
 
     leaderboard_max_length =  Integer(
-        # Keep track of the student assessment progress.
+        # The length of the leaderboard.
+        display_name=_("Leaderboard length"),
+        help=_("How many students can be in the leaderboard? (Gamification should be enabled)"),
         default=1,
         scope=Scope.content
     )
@@ -337,7 +355,8 @@ class MentoringBlock(
 
     editable_fields = (
         'display_name', 'followed_by', 'max_attempts', 'enforce_dependency',
-        'display_submit', 'feedback_label', 'weight', 'extended_feedback', 'leaderboard_max_length'
+        'display_submit', 'feedback_label', 'weight', 'extended_feedback', 
+        'gamification','adaptative_gamification','leaderboard_max_length'
     )
 
     @property
@@ -430,6 +449,32 @@ class MentoringBlock(
                 except ValueError:
                     pass  # The question has been deleted since the student answered it.
         return answer_map
+
+
+    ######  NEW!  ####################################
+
+
+     @property
+    def gamification_active(self):
+        """Compute which gamification mechanics is required for a current user."""
+        # Returns list(bool): Each index correspons to a gamification component.
+        # In this demo we only have two mechanics: Points (gamification_active.0) and Leaderboard (gamification_active.1).
+        import random as rdm
+        current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
+        if self.adaptative_gamification:
+            # Here we choose which kind of gamification is adequate for current_user
+            # TO DO: Implement a decision procedure
+            # TMP1: Selection by username encoding
+            #return bool(sum([ord(x) for x in current_user])%2)
+            # TMP2: Random selection
+            u1, u2 = bool(rdm.randrange(0,2)), bool(rdm.randrange(0,2))
+            return [u1 and not u2,u2]
+        elif self.gamification:
+            return [False,True]
+        else:
+            return [False,False]
+
+    ##################################################
 
     @property
     def score(self):
