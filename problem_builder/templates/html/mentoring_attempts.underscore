@@ -18,7 +18,7 @@
 	          		<% if (username === u[0]) {{%>
 	          			<% is_leader = true %>
 	          			<tr class="main_head">
-		                  <th scope="row"><%= i %></th>
+		                  <th scope="row"><%= i + 1 %></th>
 		                  <td><%= u[0] %></td>
 		                  <td><%= u[1] %></td>
 		                </tr>
@@ -26,7 +26,7 @@
 			        <%}} else {{ %>
 
 			        	<tr>
-		                  <th scope="row"><%= i %></th>
+		                  <th scope="row"><%= i + 1 %></th>
 		                  <td><%= u[0] %></td>
 		                  <td><%= u[1] %></td>
 		                </tr>
@@ -51,7 +51,7 @@
           }
 
           .main_head {
-              background-color: #FFA500;
+              background-color: #ffe3a1;
               color: #fff;
           }
           tbody {

@@ -714,6 +714,9 @@ class MentoringBlock(
                         self.leaderboard[i] = (current_user,current_score)
                     i += 1
 
+        temp = [(x[1],x[0]) for x in self.leaderboard]
+        temp.sort(reverse = True)
+        self.leaderboard = [(x[1],x[0]) for x in temp]
         ##################################################
 
         # Save the completion status.
