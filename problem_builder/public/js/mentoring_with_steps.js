@@ -394,7 +394,7 @@ function MentoringWithStepsBlock(runtime, element) {
         var attemptsData = attemptsDOM.data();
         var scoreData = scoreDOM.data();
         return {
-            "curr_score": scoreData.curr_score,
+            "current_score": scoreData.curr_score,
             "attempts_count": attemptsData.num_attempts,
             "attempts_max": attemptsData.max_attempts || "unlimited",
             "score": reviewStepDOM.find(".grade-result").data('score')

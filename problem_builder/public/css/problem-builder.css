@@ -101,7 +101,7 @@
     content: " ";
 }
 
-.mentoring .attempts {
+.mentoring .attempts .score{
     margin-left: 0px;
     display: inline-block;
     vertical-align: middle;
@@ -109,7 +109,7 @@
     font-weight: 600;
 }
 
-.mentoring .attempts > span {
+.mentoring .attempts .score > span {
     color: #777;
     font-style: italic;
     -webkit-font-smoothing: antialiased;
