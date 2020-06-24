@@ -15,7 +15,7 @@
           		<% var is_leader = false%>
           		<%_.forEach(leaderboard0, function (u,i) {%>
 
-	          		<% if (username === u[0]) {{%>
+	          		<% if ("yourusername" === u[0]) {{%>
 	          			<% is_leader = true %>
 	          			<tr class="main_head">
 		                  <th scope="row"><%= i %></th>
@@ -35,9 +35,9 @@
 		        <%})%>
 		        <% if (!is_leader) {{ %>
 		        	<tr class="main_head">
-	                  <th scope="row"><%= ??? %></th>
-	                  <td><%= username %></td>
-	                  <td><%= score %></td>
+	                  <th scope="row">???</th>
+	                  <td>yourusername" </td>
+	                  <td>999</td>
 	                </tr>
 		        <%}}%>
           </tbody>
