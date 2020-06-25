@@ -29,7 +29,6 @@ function MentoringStandardView(runtime, element, mentoring) {
         $('.attempts', element).data('username', response.username);
         $('.attempts', element).data('curr_score', response.curr_score); 
         $('.attempts', element).data('lb_active', response.lb_active); 
-         
         $('.score', element).data('curr_score', response.curr_score);
         $('.score', element).data('username', response.username);
         $('.score', element).data('sc_active', response.sc_active);
@@ -160,7 +159,6 @@ function MentoringStandardView(runtime, element, mentoring) {
             }
         }
         if (!is_valid) {
-            if()
             submitDOM.attr('disabled','disabled');
         } else {
             submitDOM.removeAttr("disabled");
