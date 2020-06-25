@@ -791,7 +791,7 @@ class MentoringBlock(
             'sc_active': self.show_score,
             'lb_active': self.show_leaderboard,
             'adaptative': self.adaptative_gamification,
-            'adaptative_idx': self.gamification_index
+            'adaptative_idx': self.adaptative_index
         }
 
     def feedback_dispatch(self, target_data, stringify):
