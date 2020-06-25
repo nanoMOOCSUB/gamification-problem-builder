@@ -29,9 +29,13 @@ function MentoringStandardView(runtime, element, mentoring) {
         $('.attempts', element).data('username', response.username);
         $('.attempts', element).data('curr_score', response.curr_score); 
         $('.attempts', element).data('lb_active', response.lb_active); 
+        $('.attempts', element).data('adaptative', response.adaptative);
+        $('.attempts', element).data('adaptative_idx', response.adaptative_idx);
         $('.score', element).data('curr_score', response.curr_score);
         $('.score', element).data('username', response.username);
         $('.score', element).data('sc_active', response.sc_active);
+        $('.score', element).data('adaptative', response.adaptative);
+        $('.score', element).data('adaptative_idx', response.adaptative_idx);
         mentoring.renderAttempts();
         mentoring.renderScore();
 

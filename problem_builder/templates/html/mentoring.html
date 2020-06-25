@@ -39,9 +39,9 @@
          <input type="button" class="input-main" value="{% trans "Submit" %}" disabled="disabled"/>
       </div>
 
-      <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard }}" data-username="{{ self.additional_publish_event_data.username }}" data-curr_score="{{ self.score.1 }}" data-lb_active="{{ self.show_leaderboard}}" style="width: 100%;  margin-top: 30px;"></div>
+      <div class="attempts" data-max_attempts="{{ self.max_attempts }}" data-num_attempts="{{ self.num_attempts }}" data-leaderboard0="{{ self.leaderboard }}" data-username="{{ self.additional_publish_event_data.username }}" data-curr_score="{{ self.score.1 }}" data-lb_active="{{ self.show_leaderboard}}" data-adaptative="{{ self.adaptative_gamification }}" data-adaptative_idx="{{self.adaptative_index}}" style="width: 100%;  margin-top: 30px;"></div>
 
-       <div class="score" data-curr_score="{{ self.score.1 }}" data-username="{{ self.additional_publish_event_data.username }}" data-sc_active="{{ self.show_score}}" style="width: 100%;  margin-top: 30px;"></div>
+       <div class="score" data-curr_score="{{ self.score.1 }}" data-username="{{ self.additional_publish_event_data.username }}" data-sc_active="{{ self.show_score}}" data-adaptative="{{ self.adaptative_gamification }}" data-adaptative_idx="{{self.adaptative_index}}" style="width: 100%;  margin-top: 30px;"></div>
 
         
       

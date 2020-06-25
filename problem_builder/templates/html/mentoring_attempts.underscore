@@ -4,7 +4,7 @@
   <div>
   	You have used <%= num_attempts %> of <%= max_attempts %> attempts.
   </div>
-   <% if (lb_active) {{ %>
+   <% if ((!adaptative && lb_active) || (adaptative && lb_active && adaptative_idx === 1)) {{ %>
   	<table style="width: 100%;">
           <caption>Top scores for this problem</caption>
           <thead>

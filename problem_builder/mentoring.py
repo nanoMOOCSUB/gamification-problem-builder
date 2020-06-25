@@ -461,7 +461,8 @@ class MentoringBlock(
 
     ######  NEW!  ####################################
 
-    def gamification_active(self):
+    @property
+    def adaptative_index(self):
         """Compute which gamification mechanics is required for a current user."""
         # Returns list(bool): Each index correspons to a gamification component.
         # In this demo we only have two mechanics: Points (gamification_active.0) and Leaderboard (gamification_active.1).
@@ -652,7 +653,9 @@ class MentoringBlock(
             'username': current_user,
             'curr_score': current_score,
             'sc_active': self.show_score,
-            'lb_active': self.show_leaderboard
+            'lb_active': self.show_leaderboard,
+            'adaptative': self.adaptative_gamification,
+            'adaptative_idx': self.adaptative_index
         }
 
         if show_message:
@@ -761,19 +764,7 @@ class MentoringBlock(
         self.leaderboard = [(x[1],x[0]) for x in temp]
         ##################################################
 
-                ######  NEW!  ####################################
-        #Update gamification
-        #TO DO: Migrate to a function refresh_leaderboard()
-
-        if self.adaptative_gamification:
-            n = gamification_active()
-            if not n:
-                self.show_score = True
-                self.show_leaderboard = False
-            else:
-                self.show_score = False
-                self.show_leaderboard = True
-        ##################################################
+    
 
         # Save the completion status.
         # Once it has been completed once, keep completion even if user changes values
@@ -798,7 +789,9 @@ class MentoringBlock(
             'username': current_user,
             'curr_score': current_score,
             'sc_active': self.show_score,
-            'lb_active': self.show_leaderboard
+            'lb_active': self.show_leaderboard,
+            'adaptative': self.adaptative_gamification,
+            'adaptative_idx': self.gamification_index
         }
 
     def feedback_dispatch(self, target_data, stringify):

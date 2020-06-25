@@ -1,7 +1,7 @@
 <script type="text/template" id="xblock-score-template">
   
   <span>
-     <% if (sc_active) {{ %>
+     <% if ((!adaptative && sc_active) || (adaptative && sc_active && adaptative_idx === 0)) {{ %>
         <table style="width: 50%;">
           <caption>Your score for this problem</caption>
           <thead>
