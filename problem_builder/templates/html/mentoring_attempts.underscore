@@ -2,7 +2,7 @@
   <% if (_.isNumber(max_attempts) && max_attempts > 0) {{ %>
   <span>
   <div>
-  	You have used <% num_attempts %> of <% max_attempts %> attempts.
+  	You have used <%= num_attempts %> of <%= max_attempts %> attempts.
   </div>
    <% if (lb_active) {{ %>
   	<table style="width: 100%;">
@@ -39,7 +39,7 @@
 		        <%})%>
 		        <% if (!is_leader) {{ %>
 		        	<tr class="main_head">
-	                  <th scope="row"><%= leaderboard0.length %> ... </th>
+	                  <th scope="row"> ... </th>
 	                  <td><%= username %></td>
 	                  <td><%= curr_score %></td>
 	                </tr>

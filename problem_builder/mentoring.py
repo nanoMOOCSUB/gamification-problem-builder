@@ -467,9 +467,21 @@ class MentoringBlock(
         """Compute which gamification mechanics is required for a current user."""
         # Returns list(bool): Each index correspons to a gamification component.
         # In this demo we only have two mechanics: Points (gamification_active.0) and Leaderboard (gamification_active.1).
-        import random as rdm
-        current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
-        return rdm.randrange(0,2)
+        if self.adaptative_gamification:
+            import random as rdm
+            current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
+            n = rdm.randrange(0,2)
+            if n == 0:
+                self.show_score = True
+                self.show_leaderboard = False
+            else:
+                self.show_score = False
+                self.show_leaderboard = True
+
+            return n
+        else:
+            return -1
+
     ##################################################
 
     @property
