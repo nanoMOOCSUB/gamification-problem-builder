@@ -1,7 +1,5 @@
 ## Problem Builder and Step Builder
 
-[![Circle CI](https://circleci.com/gh/open-craft/problem-builder.svg?style=svg)](https://circleci.com/gh/open-craft/problem-builder)
-
 This repository provides two XBlocks: Problem Builder and Step Builder.
 
 Both blocks allow to create questions of various types. They can be
