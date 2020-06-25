@@ -323,7 +323,7 @@ class MentoringBlock(
         #Usage of gamified mechanics
         display_name=_("Show Score"),
         help=_("Show score to students?"),
-        default=True,
+        default=False,
         scope=Scope.content
     )
 
@@ -331,7 +331,7 @@ class MentoringBlock(
         #Usage of gamified mechanics
         display_name=_("Show Leaderboard"),
         help=_("Show leaderboard to students?"),
-        default=True,
+        default=False,
         scope=Scope.content
     )
 
@@ -353,7 +353,7 @@ class MentoringBlock(
         #Usage of gamified mechanics
         display_name=_("Adaptative Gamification"),
         help=_("Use adaptative gamification mechanics?"),
-        default=True,
+        default=False,
         scope=Scope.content
     )
 
@@ -461,27 +461,13 @@ class MentoringBlock(
 
     ######  NEW!  ####################################
 
-
-    @property
     def gamification_active(self):
         """Compute which gamification mechanics is required for a current user."""
         # Returns list(bool): Each index correspons to a gamification component.
         # In this demo we only have two mechanics: Points (gamification_active.0) and Leaderboard (gamification_active.1).
-        if self.adaptative_gamification:
-            import random as rdm
-            current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
-            n = rdm.randrange(0,2)
-            if n == 0:
-                self.show_score = True
-                self.show_leaderboard = False
-            else:
-                self.show_score = False
-                self.show_leaderboard = True
-
-            return n
-        else:
-            return -1
-
+        import random as rdm
+        current_user = self.runtime.service(self, 'user').get_current_user().opt_attrs.get('edx-platform.username')
+        return rdm.randrange(0,2)
     ##################################################
 
     @property
@@ -773,6 +759,20 @@ class MentoringBlock(
         temp = [(x[1],x[0]) for x in self.leaderboard]
         temp.sort(reverse = True)
         self.leaderboard = [(x[1],x[0]) for x in temp]
+        ##################################################
+
+                ######  NEW!  ####################################
+        #Update gamification
+        #TO DO: Migrate to a function refresh_leaderboard()
+
+        if self.adaptative_gamification:
+            n = gamification_active()
+            if not n:
+                self.show_score = True
+                self.show_leaderboard = False
+            else:
+                self.show_score = False
+                self.show_leaderboard = True
         ##################################################
 
         # Save the completion status.
