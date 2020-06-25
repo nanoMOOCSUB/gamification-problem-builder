@@ -2,7 +2,7 @@
   
   <span>
   	<table style="width: 50%;">
-          <caption>Your scores for this problem</caption>
+          <caption>Your score for this problem</caption>
           <thead>
               <tr>
                     <th scope="row">Current Score</th>
@@ -20,12 +20,12 @@
           thead,
           tfoot {
               background-color: #3f87a6;
-              color: #fff;
+              
           }
 
           .main_value {
               background-color: #e4f0f5;
-              color: #fff;
+              
           }
           tbody {
               background-color: #e4f0f5;
