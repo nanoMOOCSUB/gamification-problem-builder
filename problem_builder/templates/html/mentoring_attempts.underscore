@@ -47,12 +47,12 @@
           thead,
           tfoot {
               background-color: #3f87a6;
-              color: #fff;
+              /*color: #fff;*/
           }
 
           .main_head {
               background-color: #ffe3a1;
-              color: #fff;
+              /*color: #fff;*/
           }
           tbody {
               background-color: #e4f0f5;
