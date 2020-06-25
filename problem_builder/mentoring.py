@@ -782,7 +782,7 @@ class MentoringBlock(
             'num_attempts': self.num_attempts,
             'leaderboard0': self.leaderboard,
             'username': current_user,
-            'curr_score': current_score
+            'curr_score': current_score,
             'sc_active': self.show_score,
             'lb_active': self.show_leaderboard
         }
