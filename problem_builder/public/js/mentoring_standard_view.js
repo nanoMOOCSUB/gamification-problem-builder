@@ -27,9 +27,12 @@ function MentoringStandardView(runtime, element, mentoring) {
         $('.attempts', element).data('num_attempts', response.num_attempts);
         $('.attempts', element).data('leaderboard0', response.leaderboard0);
         $('.attempts', element).data('username', response.username);
-        $('.attempts', element).data('curr_score', response.curr_score);  
+        $('.attempts', element).data('curr_score', response.curr_score); 
+        $('.attempts', element).data('lb_active', response.lb_active); 
+         
         $('.score', element).data('curr_score', response.curr_score);
         $('.score', element).data('username', response.username);
+        $('.score', element).data('sc_active', response.sc_active);
         mentoring.renderAttempts();
         mentoring.renderScore();
 
@@ -141,34 +144,11 @@ function MentoringStandardView(runtime, element, mentoring) {
     function validateXBlock() {
         var is_valid = true;
         var data = $('.attempts', element).data();
-        var data2 = $('.score',element).data();
         var children = mentoring.children;
 
-        if (data) {
-            if ((data.max_attempts > 0) && (data.num_attempts >= data.max_attempts)) {
-                is_valid = false;
-            } else {
-                for (var i = 0; i < children.length; i++) {
-                    var child = children[i];
-                    if (child && child.name !== undefined) {
-                        var child_validation = callIfExists(child, 'validate');
-                        if (_.isBoolean(child_validation)) {
-                            is_valid = is_valid && child_validation;
-                        }
-                    }
-                }
-            }
-            if (!is_valid) {
-                submitDOM.attr('disabled','disabled');
-            } else {
-                submitDOM.removeAttr("disabled");
-            }
-        }
-
-        if (data2){
-
-            is_valid = true;
-        
+        if ((data.max_attempts > 0) && (data.num_attempts >= data.max_attempts)) {
+            is_valid = false;
+        } else {
             for (var i = 0; i < children.length; i++) {
                 var child = children[i];
                 if (child && child.name !== undefined) {
@@ -178,16 +158,13 @@ function MentoringStandardView(runtime, element, mentoring) {
                     }
                 }
             }
-            
-            if (!is_valid) {
-                submitDOM.attr('disabled','disabled');
-            } else {
-                submitDOM.removeAttr("disabled");
-            }
-
         }
-
-
+        if (!is_valid) {
+            if()
+            submitDOM.attr('disabled','disabled');
+        } else {
+            submitDOM.removeAttr("disabled");
+        }
     }
 
     initXBlockView();

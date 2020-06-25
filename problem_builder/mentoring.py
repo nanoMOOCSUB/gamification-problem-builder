@@ -783,6 +783,8 @@ class MentoringBlock(
             'leaderboard0': self.leaderboard,
             'username': current_user,
             'curr_score': current_score
+            'sc_active': self.show_score,
+            'lb_active': self.show_leaderboard
         }
 
     def feedback_dispatch(self, target_data, stringify):
