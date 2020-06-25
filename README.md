@@ -1,10 +1,11 @@
-## Problem Builder and Step Builder
+## Adaptative Gamification Problem Builder and Step Builder
 
-This repository provides two XBlocks: Problem Builder and Step Builder.
+This repository provides two XBlocks (Problem Builder and Step Builde) together with a bunch of game mechanics for engaging students. 
+An adaptative gamification feature is added (not yet), which selects gamification mechanics dependent on the learner behaviour.
 
 Both blocks allow to create questions of various types. They can be
 used to simulate the workflow of real-life mentoring, within an edX
-course.
+course. Every problem could be gamified adding custom gamification mechanics such as points,badges (not yet) and adaptative mechanics.
 
 Supported features include:
 
