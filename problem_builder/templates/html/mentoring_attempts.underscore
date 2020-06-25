@@ -3,7 +3,7 @@
   <span>
   <div>
   	You have used <% num_attempts %> of <% max_attempts %> attempts.
-  <div
+  </div>
    <% if (lb_active) {{ %>
   	<table style="width: 100%;">
           <caption>Top scores for this problem</caption>
@@ -39,7 +39,7 @@
 		        <%})%>
 		        <% if (!is_leader) {{ %>
 		        	<tr class="main_head">
-	                  <th scope="row"><%= leaderboard0.length %> + </th>
+	                  <th scope="row"><%= leaderboard.length %> ... </th>
 	                  <td><%= username %></td>
 	                  <td><%= curr_score %></td>
 	                </tr>
